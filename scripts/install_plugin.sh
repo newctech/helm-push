@@ -14,7 +14,7 @@ url=""
 if [ "$(uname)" = "Darwin" ]; then
     url="https://github.com/chartmuseum/helm-push/releases/download/v${version}/helm-push_${version}_darwin_amd64.tar.gz"
 elif [ "$(uname)" = "Linux" ] ; then
-    url="https://github.com//l10xbin/releases/download/v${version}/helm-push_${version}_linux_arm64.tar.gz"
+    url="https://github.com/l10xbin/releases/download/v${version}/helm-push_${version}_linux_arm64.tar.gz"
 else
     url="https://github.com/chartmuseum/helm-push/releases/download/v${version}/helm-push_${version}_windows_amd64.tar.gz"
 fi
