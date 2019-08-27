@@ -33,4 +33,5 @@ fi
 tar xzf "releases/v${version}.tar.gz" -C "releases/v${version}"
 mv "releases/v${version}/helm-push_0.7.1_linux_arm64/bin/helmpush" "bin/helmpush" || \
     mv "releases/v${version}/bin/helmpush.exe" "bin/helmpush"
+chmod +x bin/helmpush
 
