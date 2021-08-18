@@ -14,7 +14,11 @@ url=""
 if [ "$(uname)" = "Darwin" ]; then
     url="https://github.com/chartmuseum/helm-push/releases/download/v${version}/helm-push_${version}_darwin_amd64.tar.gz"
 elif [ "$(uname)" = "Linux" ] ; then
-    url="https://github.com/l10xbin/helm-push/releases/download/v${version}/helm-push_${version}_linux_arm64.tar.gz"
+    if [ "$(uname -p)" = "sw_64" ]; then
+        url="https://github.com/newctech/helm-push/releases/download/v${version}/helm-push_${version}_linux_sw4.tar.gz"
+    elif [ "$(uname -p)" = "aarch64" ] ; then
+        url="https://github.com/l10xbin/helm-push/releases/download/v${version}/helm-push_${version}_linux_arm64.tar.gz"
+    fi
 else
     url="https://github.com/chartmuseum/helm-push/releases/download/v${version}/helm-push_${version}_windows_amd64.tar.gz"
 fi
@@ -31,7 +35,6 @@ else
     wget -q "${url}" -O "releases/v${version}.tar.gz"
 fi
 tar xzf "releases/v${version}.tar.gz" -C "releases/v${version}"
-mv "releases/v${version}/helm-push_0.7.1_linux_arm64/bin/helmpush" "bin/helmpush" || \
-    mv "releases/v${version}/bin/helmpush.exe" "bin/helmpush"
+mv "releases/v${version}/bin/helmpush" "bin/helmpush"
 chmod +x bin/helmpush
 
