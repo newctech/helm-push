@@ -23,7 +23,7 @@ build_linux:
 link_linux:
 	@cp bin/linux/amd64/helmpush ./bin/helmpush
 
-build_linux_sw64: export GOARCH=amd64
+build_linux_sw64: export GOARCH=sw64
 build_linux_sw64: export CGO_ENABLED=0
 build_linux_sw64:
 	@GOOS=linux go build -v --ldflags="-w -X main.Version=$(VERSION) -X main.Revision=$(REVISION)" \
