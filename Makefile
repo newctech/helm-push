@@ -4,7 +4,7 @@ HAS_PIP := $(shell command -v pip;)
 HAS_VENV := $(shell command -v virtualenv;)
 
 .PHONY: build
-build: build_linux build_linux_sw64 build_mac build_windows
+build: build_linux build_linux_arm64 build_linux_sw64 build_mac build_windows
 
 build_windows: export GOARCH=amd64
 build_windows:
@@ -22,6 +22,12 @@ build_linux:
 
 link_linux:
 	@cp bin/linux/amd64/helmpush ./bin/helmpush
+
+build_linux_arm64: export GOARCH=arm64
+build_linux_arm64: export CGO_ENABLED=0
+build_linux_arm64:
+	@GOOS=linux go build -v --ldflags="-w -X main.Version=$(VERSION) -X main.Revision=$(REVISION)" \
+		-o bin/linux/arm64/helmpush cmd/helmpush/main.go  # linux
 
 build_linux_sw64: export GOARCH=sw64
 build_linux_sw64: export CGO_ENABLED=0
